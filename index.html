@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="ru"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Wipecraft RPG 7.1&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- ГАРАНТИРОВАННОЕ ПОДКЛЮЧЕНИЕ SDK --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://telegram.org"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>:root { --main-bg: var(--tg-theme-bg-color, #1a1a1a); --card-bg: var(--tg-theme-secondary-bg-color, #2c2c2c); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body { background-color: var(--main-bg); color: var(--tg-theme-text-color, #ffffff); overflow: hidden; height: 100vh; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.card { background: var(--card-bg); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.bar-bg { background: rgba(0,0,0,0.4); border-radius: 20px; height: 12px; overflow: hidden; position: relative; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.bar-fill { height: 100%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.hp-gradient { background: linear-gradient(90deg, #ff4d4d, #f87171); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.en-gradient { background: linear-gradient(90deg, #fbbf24, #fffbeb); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.btn-press:active { transform: scale(0.92); filter: brightness(1.2); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#log-container { scrollbar-width: none; mask-image: linear-gradient(to bottom, transparent, black 20%); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body class="p-4 font-sans select-none flex flex-col"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Статус коннекта --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="status-line" class="text-[8px] uppercase tracking-[0.2em] text-center mb-2 text-green-500 opacity-50 font-bold italic"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>● System Linked</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Профиль игрока --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card p-5 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flex justify-between items-end mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="w-2/3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="text-[10px] uppercase opacity-50 font-black mb-1"&gt;Explorer&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h1 id="user-name" class="font-black text-xl text-blue-400 truncate leading-none"&gt;Connecting...&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="text-right"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;span id="user-lvl" class="bg-blue-500 text-white px-2 py-0.5 rounded-full text-[10px] font-black italic shadow-lg shadow-blue-500/20"&gt;LVL 1&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="space-y-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-between text-[9px] font-bold mb-1.5 px-1 tracking-tighter"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="flex items-center"&gt;❤️ VITALITY&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span id="hp-txt" class="font-mono"&gt;0 / 0&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bar-bg shadow-inner"&gt;&lt;div id="hp-fill" class="bar-fill hp-gradient"&gt;&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-between text-[9px] font-bold mb-1.5 px-1 tracking-tighter"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span class="flex items-center"&gt;⚡ NEURAL ENERGY&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span id="en-txt" class="font-mono"&gt;0 / 0&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bar-bg shadow-inner"&gt;&lt;div id="en-fill" class="bar-fill en-gradient"&gt;&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Инвентарь (Grid-layout) --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card p-4 mb-4 flex-grow overflow-hidden flex flex-col"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flex justify-between items-center mb-3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="font-black text-[10px] uppercase tracking-widest opacity-60 flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;span class="mr-2"&gt;🎒&lt;/span&gt; Cargo Bay</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span id="weight-info" class="font-mono text-[9px] bg-black/20 px-2 py-0.5 rounded text-gray-400 italic"&gt;0.0/100.0 KG&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="inventory-list" class="grid grid-cols-2 gap-2 overflow-y-auto content-start pr-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;!-- Items --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Панель управления --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-2 gap-4 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button onclick="handleAction('mine')" class="card p-4 btn-press flex flex-col items-center bg-gradient-to-b from-transparent to-yellow-900/10"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="text-3xl mb-1 drop-shadow-md"&gt;⛏&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="text-[9px] font-black uppercase tracking-[0.2em]"&gt;Extract&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button onclick="handleAction('hunt')" class="card p-4 btn-press flex flex-col items-center bg-gradient-to-b from-transparent to-red-900/10"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="text-3xl mb-1 drop-shadow-md"&gt;⚔️&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="text-[9px] font-black uppercase tracking-[0.2em]"&gt;Combat&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Системный лог --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="log-container" class="h-24 font-mono text-[10px] p-2 bg-black/10 rounded-lg overflow-y-auto italic text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="log-content"&gt;&gt; [INFO] Neural link established...&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const tg = window.Telegram?.WebApp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// ТВОЙ URL ИЗ CLOUDFLARE</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const API_URL = "https://coupon-spotlight-occur-casa.trycloudflare.com";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Проверка готовности SDK</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!tg || !tg.initData) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.body.innerHTML = `&lt;div class="p-10 text-center font-mono text-red-500 text-xs"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>[FATAL ERROR]&lt;br&gt;Telegram SDK not detected.&lt;br&gt;Please open via Telegram App.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tg.expand();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tg.ready();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>tg.enableClosingConfirmation();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Универсальный обработчик запросов</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>async function apiCall(endpoint, body = {}) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const response = await fetch(`${API_URL}/api/${endpoint}`, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>method: 'POST',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>body: JSON.stringify({ ...body, initData: tg.initData })</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!response.ok) throw new Error('OFFLINE');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return await response.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch (err) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateStatus(false);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return { success: false, msg: "Connection unstable" };</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function updateStatus(online) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const el = document.getElementById('status-line');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>el.innerText = online ? "● System Linked" : "○ Connection Lost";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>el.className = `text-[8px] uppercase tracking-[0.2em] text-center mb-2 font-bold italic ${online ? 'text-green-500' : 'text-red-500 animate-pulse'}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>async function refreshData() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const user = await apiCall('sync');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (user.id) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateStatus(true);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('user-name').innerText = user.name;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('user-lvl').innerText = `LVL ${user.level}`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Прогресс бары</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateBar('hp', user.hp, user.max_hp);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateBar('en', user.energy, user.max_energy);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Обновляем инвентарь</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>await loadInventory();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function updateBar(id, val, max) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const pct = Math.max(0, Math.min(100, (val / max) * 100));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(`${id}-fill`).style.width = `${pct}%`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(`${id}-txt`).innerText = `${val} / ${max}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>async function loadInventory() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const items = await apiCall('inventory');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const list = document.getElementById('inventory-list');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let weight = 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>list.innerHTML = items.length ? '' : '&lt;div class="col-span-2 text-center py-4 opacity-20 italic text-[10px]"&gt;Cargo empty&lt;/div&gt;';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>items.forEach(i =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>weight += (i.weight || 0.1) * i.quantity;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const div = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>div.className = "bg-black/30 p-2 rounded-xl flex justify-between items-center border border-white/5 animate-fade-in";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>div.innerHTML = `&lt;span class="opacity-70 text-[9px]"&gt;${i.item_name}&lt;/span&gt; &lt;span class="text-blue-400 font-black"&gt;x${i.quantity}&lt;/span&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>list.appendChild(div);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('weight-info').innerText = `${weight.toFixed(1)}/100.0 KG`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>async function handleAction(type) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>tg.HapticFeedback.impactOccurred('medium');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const res = await apiCall(type);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const log = document.getElementById('log-content');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const entry = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>entry.className = res.success ? "text-blue-400" : "text-red-400";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>entry.innerText = `&gt; [${new Date().toLocaleTimeString()}] ${res.msg}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>log.prepend(entry);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (res.success) refreshData();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Запуск</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>refreshData();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>setInterval(refreshData, 15000);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
