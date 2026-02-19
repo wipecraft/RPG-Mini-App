@@ -4,118 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Wipecraft RPG 7.1</title>
-    <!-- Официальный SDK Telegram -->
     <script src="https://telegram.org"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --tg-bg: var(--tg-theme-bg-color, #1a1a1a); --tg-card: var(--tg-theme-secondary-bg-color, #2c2c2c); }
-        body { background-color: var(--tg-bg); color: var(--tg-theme-text-color, #ffffff); overflow: hidden; height: 100vh; font-family: sans-serif; }
-        .card { background: var(--tg-card); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); }
-        .bar-bg { background: rgba(0,0,0,0.4); border-radius: 20px; height: 12px; overflow: hidden; }
-        .bar-fill { height: 100%; transition: width 0.5s ease; width: 0%; }
-        .hp-fill { background: linear-gradient(90deg, #ff4d4d, #f87171); }
-        .en-fill { background: linear-gradient(90deg, #fbbf24, #fffbeb); }
-        .btn-press:active { transform: scale(0.95); opacity: 0.8; }
+        body { background-color: var(--tg-bg); color: var(--tg-theme-text-color, #ffffff); overflow: hidden; height: 100vh; font-family: sans-serif; transition: all 0.3s ease; }
+        .card { background: var(--tg-card); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .bar-bg { background: rgba(0,0,0,0.4); border-radius: 20px; height: 12px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; }
+        .hp-fill { background: linear-gradient(90deg, #ff4d4d, #f87171); box-shadow: 0 0 10px rgba(248,113,113,0.4); }
+        .en-fill { background: linear-gradient(90deg, #fbbf24, #fffbeb); box-shadow: 0 0 10px rgba(251,191,36,0.4); }
+        .btn-press:active { transform: scale(0.96); filter: brightness(1.2); }
+        #log-container::-webkit-scrollbar { width: 0; }
     </style>
 </head>
 <body class="p-4 flex flex-col select-none">
 
-    <!-- Статус подключения -->
-    <div id="status" class="text-[8px] uppercase text-center mb-2 text-green-500 opacity-50 font-bold italic">● System Linked</div>
+    <div id="status" class="text-[8px] uppercase text-center mb-2 text-green-500 opacity-50 font-bold italic tracking-widest">● System Linked</div>
 
-    <!-- Профиль -->
-    <div class="card p-5 mb-4 shadow-xl">
+    <div class="card p-5 mb-4">
         <div class="flex justify-between items-end mb-4">
             <div class="w-2/3">
-                <div class="text-[10px] uppercase opacity-50 font-black mb-1 italic text-blue-400">Player Profile</div>
-                <h1 id="user-name" class="font-black text-xl truncate leading-none italic text-white">Connecting...</h1>
+                <div class="text-[10px] uppercase opacity-50 font-black mb-1 italic text-blue-400">Explorer Profile</div>
+                <h1 id="user-name" class="font-black text-xl truncate leading-none italic text-white">Neural Sync...</h1>
             </div>
             <div class="text-right">
-                <span id="user-lvl" class="bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-black italic shadow-lg shadow-blue-500/20">LVL 1</span>
+                <span id="user-lvl" class="bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-black italic">LVL 1</span>
             </div>
         </div>
         
         <div class="space-y-4">
             <div>
-                <div class="flex justify-between text-[9px] font-bold mb-1.5 px-1 uppercase tracking-tighter opacity-80">
+                <div class="flex justify-between text-[9px] font-bold mb-1.5 px-1 uppercase opacity-80">
                     <span>❤️ Vitality</span><span id="hp-txt">0 / 0</span>
                 </div>
                 <div class="bar-bg"><div id="hp-bar" class="bar-fill hp-fill"></div></div>
             </div>
             <div>
-                <div class="flex justify-between text-[9px] font-bold mb-1.5 px-1 uppercase tracking-tighter opacity-80">
-                    <span>⚡ Neural Energy</span><span id="en-txt">0 / 0</span>
+                <div class="flex justify-between text-[9px] font-bold mb-1.5 px-1 uppercase opacity-80">
+                    <span>⚡ Energy</span><span id="en-txt">0 / 0</span>
                 </div>
                 <div class="bar-bg"><div id="en-bar" class="bar-fill en-fill"></div></div>
             </div>
         </div>
     </div>
 
-    <!-- Инвентарь -->
     <div class="card p-4 mb-4 flex-grow overflow-hidden flex flex-col">
-        <div class="flex justify-between items-center mb-3 text-[10px] uppercase font-black opacity-60 italic">
+        <div class="flex justify-between items-center mb-3 text-[10px] uppercase font-black opacity-60 italic border-b border-white/5 pb-2">
             <span>🎒 Cargo Bay</span><span id="weight-info">0.0/100.0 KG</span>
         </div>
         <div id="inventory-list" class="grid grid-cols-2 gap-2 overflow-y-auto content-start pr-1 text-[10px]">
-            <!-- JS вставит предметы -->
+            <div class="col-span-2 text-center py-4 opacity-20 italic">Scanning...</div>
         </div>
     </div>
 
-    <!-- Кнопки действий -->
     <div class="grid grid-cols-2 gap-4 mb-4">
-        <button onclick="handleAction('mine')" class="card p-4 btn-press flex flex-col items-center justify-center border-b-4 border-yellow-600/30">
+        <button onclick="handleAction('mine')" class="card p-4 btn-press flex flex-col items-center justify-center border-b-4 border-yellow-600/30 bg-white/5">
             <span class="text-3xl mb-1">⛏</span>
             <span class="text-[9px] font-black uppercase tracking-widest">Extract</span>
         </button>
-        <button onclick="handleAction('hunt')" class="card p-4 btn-press flex flex-col items-center justify-center border-b-4 border-red-600/30">
+        <button onclick="handleAction('hunt')" class="card p-4 btn-press flex flex-col items-center justify-center border-b-4 border-red-600/30 bg-white/5">
             <span class="text-3xl mb-1">⚔️</span>
             <span class="text-[9px] font-black uppercase tracking-widest">Combat</span>
         </button>
     </div>
 
-    <!-- Системный лог -->
-    <div id="log-container" class="h-20 font-mono text-[9px] p-2 bg-black/20 rounded-lg overflow-y-auto italic text-gray-500 border border-white/5 shadow-inner">
-        <div id="log-content">> [INFO] Neural link standby...</div>
+    <div id="log-container" class="h-24 font-mono text-[9px] p-3 bg-black/40 rounded-lg overflow-y-auto italic text-gray-400 border border-white/5 shadow-inner">
+        <div id="log-content">> System initialized. Waiting for uplink...</div>
     </div>
 
     <script>
-        const tg = window.Telegram?.WebApp;
-        // ТВОЯ АКТУАЛЬНАЯ ССЫЛКА (Уже вставил!)
-        const API_URL = "https://mat-chat-october-winston.trycloudflare.com";
-
-        if (!tg || !tg.initData) {
-            document.body.innerHTML = `<div class="p-20 text-center font-mono text-red-500 text-xs uppercase font-bold">[FATAL ERROR]<br><br>Neural link failed.<br>Open via Telegram.</div>`;
-        }
+        const tg = window.Telegram.WebApp;
+        // Актуальная ссылка из твоего последнего лога
+        const API_URL = "https://powerpoint-fantastic-emails-brands.trycloudflare.com";
 
         tg.expand();
         tg.ready();
 
-        async function apiCall(endpoint) {
+        async function apiCall(endpoint, data = {}) {
             try {
-                const response = await fetch(`${API_URL}/api/${endpoint}`, {
+                const response = await fetch(`${API_URL}/${endpoint}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ initData: tg.initData })
+                    body: JSON.stringify({ 
+                        initData: tg.initData,
+                        ...data 
+                    })
                 });
-                if (!response.ok) throw new Error();
-                return await response.json();
+                const res = await response.json();
+                
+                // Если сервер вернул ошибку авторизации
+                if (response.status === 401 || response.status === 403) {
+                    addLog("Access Denied: Neural link rejected", "red");
+                    return null;
+                }
+                return res;
             } catch (err) {
                 document.getElementById('status').innerText = "○ Link Offline";
-                document.getElementById('status').className = "text-[8px] uppercase text-center mb-2 text-red-500 font-bold italic animate-pulse";
-                return { success: false, msg: "Connection Lost" };
+                document.getElementById('status').classList.replace("text-green-500", "text-red-500");
+                return null;
             }
         }
 
-        async function sync() {
-            const user = await apiCall('sync');
-            if (user && user.id) {
-                document.getElementById('user-name').innerText = user.name;
-                document.getElementById('user-lvl').innerText = `LVL ${user.level}`;
-                
-                updateBar('hp', user.hp, user.max_hp);
-                updateBar('en', user.energy, user.max_energy);
-                loadInv();
-            }
+        function addLog(text, color = "gray") {
+            const log = document.getElementById('log-content');
+            const msg = document.createElement('div');
+            const colors = { red: "text-red-400", blue: "text-blue-400", green: "text-green-400", gray: "text-gray-500" };
+            msg.className = `mb-1 ${colors[color] || colors.gray}`;
+            msg.innerText = `> ${text}`;
+            log.prepend(msg);
         }
 
         function updateBar(id, val, max) {
@@ -124,35 +121,48 @@
             document.getElementById(`${id}-txt`).innerText = `${val} / ${max}`;
         }
 
-        async function loadInv() {
-            const items = await apiCall('inventory');
-            const list = document.getElementById('inventory-list');
-            list.innerHTML = '';
-            let weight = 0;
-            if (items && items.length > 0) {
-                items.forEach(i => {
-                    weight += (i.weight || 0.1) * i.quantity;
-                    list.innerHTML += `<div class="bg-black/30 p-2 rounded-lg border border-white/5 flex justify-between"><span>${i.item_name}</span><span class="text-blue-400 font-bold">x${i.quantity}</span></div>`;
-                });
-            } else {
-                list.innerHTML = '<div class="col-span-2 text-center py-4 opacity-20 italic">No cargo detected</div>';
+        async function sync() {
+            const data = await apiCall('sync');
+            if (data && data.success) {
+                const user = data.user;
+                document.getElementById('user-name').innerText = user.name;
+                document.getElementById('user-lvl').innerText = `LVL ${user.level}`;
+                updateBar('hp', user.hp, user.max_hp);
+                updateBar('en', user.energy, user.max_energy);
+                
+                // Обновляем инвентарь
+                const list = document.getElementById('inventory-list');
+                list.innerHTML = '';
+                let weight = 0;
+                if (user.inventory && user.inventory.length > 0) {
+                    user.inventory.forEach(i => {
+                        weight += (i.weight || 0.1) * i.quantity;
+                        list.innerHTML += `<div class="bg-black/30 p-2 rounded-lg border border-white/5 flex justify-between"><span>${i.item_name}</span><span class="text-blue-400 font-bold">x${i.quantity}</span></div>`;
+                    });
+                } else {
+                    list.innerHTML = '<div class="col-span-2 text-center py-4 opacity-20 italic">No cargo</div>';
+                }
+                document.getElementById('weight-info').innerText = `${weight.toFixed(1)}/100.0 KG`;
+                document.getElementById('status').innerText = "● System Linked";
+                document.getElementById('status').classList.replace("text-red-500", "text-green-500");
             }
-            document.getElementById('weight-info').innerText = `${weight.toFixed(1)}/100.0 KG`;
         }
 
         async function handleAction(type) {
-            tg.HapticFeedback.impactOccurred('medium');
+            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+            addLog(`Initiating ${type}...`, "gray");
+            
             const res = await apiCall(type);
-            const log = document.getElementById('log-content');
-            const msg = document.createElement('div');
-            msg.className = res.success ? "text-blue-400" : "text-red-400";
-            msg.innerText = `> ${res.msg}`;
-            log.prepend(msg);
-            if (res.success) sync();
+            if (res) {
+                addLog(res.msg, res.success ? "blue" : "red");
+                if (res.success) sync();
+            }
         }
 
+        // Первичный запуск
         sync();
-        setInterval(sync, 15000);
+        // Авто-синхронизация раз в 20 сек
+        setInterval(sync, 20000);
     </script>
 </body>
 </html>
